@@ -1,4 +1,4 @@
-# Day 03 Linuc Command CheatSheet
+# Day 03 Linux Command CheatSheet
 
 This is cheatsheet contains commonly used linux commands
 
@@ -22,4 +22,15 @@ for daily troubleshooting and operations.
 - mv : moving and renaming directory
 - cmp : compare the file 
 - rm file – delete file
+## Package Management
+- apt-cache search string : searching for package
+- apt-get install package : install new package
+- apt-get remove package : remove a package without removing configuration
+- dpkg -l : list all installed package
+
+## Networking Troubleshooting Commands
+- ip addr/ifconfig : check the network interface status
+- ping : test basic ip level connectivity to a specific ip
+- traceroute : 	Trace the route packets take to a destination.
+- dig / nslookup: query dns servers to trouble shoot name resoultion issues.
  
