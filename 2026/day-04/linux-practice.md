@@ -26,3 +26,18 @@ Command : pgrep -a ssh
 
 ### Listing active service  
 
+ Command : systemctl list-units --type=service --state=running
+
+ - Multiple system services are managed and running via systemd.
+
+ ## Log Practice
+  
+  Command : journalctl -u ssh --no-pager -n 20
+
+   -  view specific ssh related last 20 logs
+   
+## Summary
+Practiced basic Linux troubleshooting commands on AWS Ubuntu.
+This helped revise core Linux fundamentals used in real environments.
+
+
