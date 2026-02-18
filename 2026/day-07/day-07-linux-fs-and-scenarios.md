@@ -64,6 +64,75 @@ This consolidates your Linux fundamentals and prepares you for real-world troubl
 - du -sh /var/log/* 2>/dev/null | sort -h | tail -5 cat  /etc/hostname  ls -la -a
 ![alt text](image.png)
 
+# Part 2: Scenario-Based Practice
+
+ ## Scenario 1: Service Not Starting (cron)
+
+ ### step 1 : check service status
+   - systemctl status cron
+ ### why ; to check the servive is active, inactive or failed
+
+  - Screen Shot :
+
+  ![alt text](image-1.png)
+ ### step 2: stop the service manually
+   - systemctl stop cron
+ ### why : simulate a fail scenario
+ ![alt text](image-2.png)
+
+### step 3: check log for cron last 30 lines
+ ![alt text](image-3.png)
+### What i learned 
+ - Always check the service status first.
+ - logs explain why service failed
+ - systemd store the log in journald.
+## Scenario 2: High CPU Usage
+ ### Step 1: Live CPU monitoring
+ - `top`
+ ### Why: To identify processes consuming high CPU in real time.
+
+ ### Step 2: Sort processes by CPU usage
+`ps aux --sort=-%cpu | head -10`
+### Why: To quickly identify top CPU-consuming processes.
+  
+### What I Learned
+
+- "top" is useful for live monitoring. ps aux helps in quick analysis during incidents.
+![alt text](image-4.png)
+
+## Scenario 3: File Permission Issue 
+ ### Step 1: Create a script 
+  - vim backup.sh
+  - excute ./backup 
+  - its not running beacuse or permission
+### step 2 : change file permission
+  chmod 764 backup.sh 
+  Screenshot:
+  ![alt text](image-5.png)
+
+  ### What I Learned
+
+- Scripts require execute permission (x).
+- ls -l -a clearly shows permission issues.
+
+--
+
+### Why This Matters for DevOps
+
+- Logs help debug production issues. 
+- Service status checks are the first step in troubleshooting. 
+- Permission issues are common deployment problems.
+ 
+--
+
+## Summary of Learnings
+
+- Linux file system structure
+- Service troubleshooting using systemctl
+- Log analysis using journalctl
+- CPU troubleshooting
+- File permission fixes
+
 
 
 
