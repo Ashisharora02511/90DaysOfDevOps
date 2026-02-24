@@ -10,8 +10,42 @@
   - am using sshagent safe way to get acess.
 #### Accessed tws-devops-2 only via tws-devops-1, not directly from local
 ### Key Commands Used
-  - ssh -A -i tws-devops-1.pem ubuntu@Public_IP
-  - ssh ubuntu@Private_IP
+ #### script i added to direct connect in config file
+ -  Host tws2
+    HostName 56.228.33.62
+    User ubuntu
+    ProxyJump bastion
+    IdentityFile ~/Downloads/tws-devops-1.pem
+
+ -  Host bastion
+    HostName 13.48.249.211
+    User ubuntu
+    IdentityFile ~/Downloads/tws-devops-1.pem    
+  
 ## Observation
 * This setup improves security by restricting direct SSH access
 * Bastion host acts as a controlled entry point
+
+## Task 2: Docker Installtion & Nginx (tws-devops-2)
+  * Updated packages and installed Docker
+  * Started Docker service
+  * Pulled official nginx image
+  * Created and ran an Nginx container
+  * Verified container and Docker version
+### Commands Used
+
+sudo apt-get update
+
+sudo apt-get install docker.io -y
+
+sudo systemctl start docker
+
+docker -v
+
+docker pull nginx
+
+docker run -d nginx
+
+docker ps
+
+## Task 3: Nginx Installation on Host (tws1)
