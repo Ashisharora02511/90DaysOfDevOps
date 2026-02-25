@@ -49,3 +49,51 @@ docker run -d nginx
 docker ps
 
 ## Task 3: Nginx Installation on Host (tws1)
+
+* Installed Nginx directly on EC2 host
+* Started and verified service status
+* Checked logs using journalctl and /var/log/nginx
+* Initially website was not accessible
+* Identified missing Security Group rule
+* Allowed port 80 in inbound rules
+* Successfully accessed Nginx from browser
+
+## commands
+*  sudo apt-get update 
+ -  latest package list download form outside
+*  sudo apt install -y nginx
+* systemctl start nginx
+* systemctl status nginx
+* sudo tail -n 20 /var/log/nginx/access.log
+* sudo tail -n 20 /var/log/nginx/error.log
+* journalctl -u nginx -n 20
+
+## Observation
+
+
+
+* Even if service is running, network rules can block access
+* Security Groups are a common real-world issue during deployments
+* Logs & File Handling
+* Created log files using redirection
+
+
+### Copied logs from EC2 to local system using scp
+
+
+
+`scp -i tws.pem ubuntu@ec2-ip:/home/ubuntu/nginx-accesslogs.txt .`
+
+`scp -i tws.pem ubuntu@ec2-ip:/home/ubuntu/nginx-errorlogs.txt .
+
+## What I Learned Today
+
+
+
+* Real-world use of Bastion Hosts
+* Secure SSH key-based authentication
+* Difference between host-based Nginx vs containerized Nginx
+* Importance of Security Groups in AWS
+* Log analysis for service troubleshooting
+* End-to-end debugging mindset
+
