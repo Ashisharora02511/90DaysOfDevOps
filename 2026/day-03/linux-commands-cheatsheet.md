@@ -9,7 +9,7 @@ for daily troubleshooting and operations.
 - ps: if we are not passing any argument,then it show processes related to current session.
 - ps -ef : its show all process with full listing
 - ps -f -u :filter out the process based on user.
-- top: We can use top command to see processes with consumed resources like memory and cpu utilization.
+- top: We can use top command to see processes with consumed resources like memory and cpu   utilization.
 - kill -9 PID : to kill a procees with process id
 
 ## File & Directory Management
