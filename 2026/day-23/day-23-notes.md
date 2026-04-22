@@ -33,6 +33,7 @@
 -  `git log --oneline`
 8. Delete a branch you no longer need
 - `git branch -d feature-2`
+   ![alt text](<ScreenShots/Branching Commands.png>)
 ### Task 3: Push to GitHub 
 1. Create a new repository on GitHub (do NOT initialize it with a README)
 2. Connect your local devops-git-practice repo to the GitHub remote
@@ -42,9 +43,20 @@
 - `git push origin Main`
 4. Push feature-1 branch to GitHub
 5. Verify both branches are visible on GitHub
+  ![alt text](ScreenShots/gitpushcommands.png)
 ### Task 4: Pull from GitHub
 - Make a change to a file directly on GitHub (use the GitHub editor)
 - What is the difference between git fetch and git pull?
 
 - git fetch: Downloads changes from remote only; does not change your branch,just updates remote info.
 - git pull : Downloads changes from remote and merges them into your current branch, updating your local branch immediately.
+![alt text](ScreenShots/gitpullcommands.png)
+### Task 5:  Clone vs Fork
+- git clone:
+ - Creates a copy of a repository on your local machine
+ - Directly connected to the original repo (remote = origin)
+ - Used when you have access to the repo
+- fork:
+ - Creates a copy of a repository in your GitHub account
+ - Not directly connected (you own the fork)
+ - Used when you don’t have write access
