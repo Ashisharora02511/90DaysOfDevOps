@@ -114,7 +114,7 @@ Create a comparison in your notes:
     - Deploy immediately.
     - Everything in main should always be production-ready.
 
-    **Text Diagram:**
+   **Text Diagram:**
     ```text  
    
       [main] (Always Production-Ready)
@@ -137,7 +137,7 @@ Create a comparison in your notes:
         v
     ```
 
- **When/where it's used:**
+**When/where it's used:**
     - ship frequent,small releases
 
      **Pros:**
@@ -147,7 +147,7 @@ Create a comparison in your notes:
      - In large teams,it can result in frequent merge conflicts
 3. **Trunk-Based Development**
 
-    **How it works:**
+   **How it works:**
 
     - There’s one `main` branch, often called main or trunk. All development happens here
     - Developers commit directly to `main`, often multiple times per day
