@@ -115,7 +115,7 @@ Create a comparison in your notes:
     - Everything in main should always be production-ready.
 
    **Text Diagram:**
-    ```text  
+     ```text  
    
       [main] (Always Production-Ready)
         |
@@ -135,8 +135,8 @@ Create a comparison in your notes:
         o (Merge & Auto-Deploy)
         |
         v
-    ```
-
+     ```
+ 
 **When/where it's used:**
     - ship frequent,small releases
 
