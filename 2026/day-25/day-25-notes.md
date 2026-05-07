@@ -74,7 +74,7 @@ Create a comparison in your notes:
 - feature: for added new functionality.
 - release: Used to prep a new version for production.Created from develop and merged into both main and develop.
 - hotfix:For urgent fixes on production.Created from main,then merged back into both main and develop.
-- Text diagram:
+- **Text Diagram:**
 
 ````text
  [main] (Production-ready)
