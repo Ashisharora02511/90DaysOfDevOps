@@ -105,7 +105,7 @@ Create a comparison in your notes:
 
 2. **GitHub Flow**
 
-    **How it works:**
+   **How it works:**
 
     - Create a `feature branch` from `main`
     - Push commits to the `feature branch`
@@ -137,7 +137,7 @@ Create a comparison in your notes:
         v
     ```
 
-    **When/where it's used:**
+ **When/where it's used:**
     - ship frequent,small releases
 
      **Pros:**
@@ -145,7 +145,6 @@ Create a comparison in your notes:
     
      **Cons:**
      - In large teams,it can result in frequent merge conflicts
-
 3. **Trunk-Based Development**
 
     **How it works:**
@@ -177,7 +176,7 @@ Create a comparison in your notes:
         v
     ```
 
-    **When/where it's used:**
+**When/where it's used:**
     - building SaaS products or anything that updates frequently
 
 
