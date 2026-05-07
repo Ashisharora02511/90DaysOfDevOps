@@ -113,7 +113,17 @@ Create a comparison in your notes:
  |
  V
  ```
+ **When/where it's used:**
+ 
+    - Team follows scheduled release cycles
 
+    - Need to maintain multiple versions
+
+    **Pros:** 
+    - Clear separation of concerns across features,releases,and hotfixes.
+
+    **Cons:** 
+    - Can result in long-lived branches,increasing the risk of merge conflicts.
 2. **GitHub Flow**
 
 **How it works:**
