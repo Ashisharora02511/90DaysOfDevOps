@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Docker Learning Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🚀 Docker Learning Dashboard</h1>
+
+    <div class="card">
+        <h2>Day 34 - Docker Compose</h2>
+        <p>Learning Multi-Container Applications</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>🐳 Docker</h3>
+            <p>Container Runtime</p>
+        </div>
+
+        <div class="card">
+            <h3>🗄 PostgreSQL</h3>
+            <p>Database Service</p>
+        </div>
+
+        <div class="card">
+            <h3>⚡ Redis</h3>
+            <p>Cache Service</p>
+        </div>
+
+    </div>
+
+    <div class="card">
+        <h2>Container Information</h2>
+
+        <p>
+            Running Container:
+            <strong>{{ hostname }}</strong>
+        </p>
+    </div>
+
+    <div class="card success">
+        <h2>✅ Application Running Successfully</h2>
+        <p>Docker Compose Stack is Healthy</p>
+    </div>
+
+</div>
+
+</body>
+</html>

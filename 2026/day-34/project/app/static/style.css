@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fa;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+h1 {
+    text-align: center;
+    color: #0f4c81;
+}
+
+.grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    flex: 1;
+}
+
+.success {
+    border-left: 6px solid green;
+}
+
+h2,h3 {
+    margin-top: 0;
+}
