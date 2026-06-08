@@ -1,94 +1,289 @@
 # Day 36 – Docker Project: Dockerize a Full Application
 
-## Task
-Today's goal is to **take a real application and Dockerize it end-to-end**.
+## Objective
 
-No tutorials. No hand-holding. Pick an app, write the Dockerfile, set up Compose, and ship it. This is what you'll do on the job.
+The goal of Day 36 was to Dockerize a complete Spring Boot application and run it with PostgreSQL and PgAdmin using Docker Compose.
 
----
-
-## Expected Output
-- A markdown file: `day-36-docker-project.md`
-- Complete project with Dockerfile, docker-compose.yml, and app code
-- Image pushed to Docker Hub
+This project helped me understand how real-world applications are packaged, deployed, and managed using Docker.
 
 ---
 
-## Challenge Tasks
+# Application Chosen
 
-### Task 1: Pick Your App
-Choose **one** of these (or use your own project):
-- A **Python Flask/Django** app with a database
-- A **Node.js Express** app with MongoDB
-- A **static website** served by Nginx with a backend API
-- Any app from your GitHub that doesn't have Docker yet
+I selected my Spring Boot Uber Application.
 
-If you don't have an app, clone a simple open-source one and Dockerize it.
+### Why This Application?
 
----
+* Real Java Spring Boot application
+* Uses PostgreSQL/PostGIS database
+* Suitable for learning Docker Compose
+* Demonstrates multi-container architecture
+* Similar to production deployments
 
-### Task 2: Write the Dockerfile
-1. Create a Dockerfile for your application
-2. Use a **multi-stage build** if applicable
-3. Use a **non-root user**
-4. Keep the image **small** — use alpine or slim base images
-5. Add a `.dockerignore` file
+Project Components:
 
-Build and test it locally.
+* Spring Boot Application
+* PostgreSQL with PostGIS
+* PgAdmin
+* Docker Compose
+* Docker Hub
 
 ---
 
-### Task 3: Add Docker Compose
-Write a `docker-compose.yml` that includes:
-1. Your **app** service (built from Dockerfile)
-2. A **database** service (Postgres, MySQL, MongoDB — whatever your app needs)
-3. **Volumes** for database persistence
-4. A **custom network**
-5. **Environment variables** for configuration (use `.env` file)
-6. **Healthchecks** on the database
+# Task 1: Dockerize the Application
 
-Run `docker compose up` and verify everything works together.
+Created a Dockerfile for the Spring Boot application.
 
----
+Features:
 
-### Task 4: Ship It
-1. Tag your app image
-2. Push it to Docker Hub
-3. Share the Docker Hub link
-4. Write a `README.md` in your project with:
-   - What the app does
-   - How to run it with Docker Compose
-   - Any environment variables needed
+* Multi-stage build
+* Maven build stage
+* Optimized runtime image
+* Non-root user
+* Production-ready structure
+
+Dockerfile Location:
+
+```text
+Project/uberApp/Dockerfile
+```
 
 ---
 
-### Task 5: Test the Whole Flow
-1. Remove all local images and containers
-2. Pull from Docker Hub and run using only your compose file
-3. Does it work fresh? If not — fix it until it does
+# Task 2: Dockerfile Improvements
+
+Implemented several Docker best practices.
+
+## Multi-Stage Build
+
+Used Maven image to build the application and copied only the final JAR into the runtime image.
+
+Benefits:
+
+* Smaller image size
+* Cleaner runtime image
+* Faster deployments
+
+## Non-Root User
+
+Created a dedicated application user and avoided running the application as root.
+
+Benefits:
+
+* Better security
+* Production-ready configuration
+
+## Docker Ignore
+
+Created a `.dockerignore` file to exclude unnecessary files:
+
+```text
+target/
+.git/
+.idea/
+.vscode/
+*.log
+*.iml
+```
+
+Benefits:
+
+* Faster build process
+* Smaller build context
+* Cleaner Docker images
 
 ---
 
-## Documentation
-Create `day-36-docker-project.md` with:
-- What app you chose and why
-- Your Dockerfile (with comments explaining each line)
-- Challenges you faced and how you solved them
-- Final image size
-- Docker Hub link
+# Task 3: Docker Compose Setup
+
+Created a Docker Compose configuration containing:
+
+## Spring Boot Application
+
+* Built using Dockerfile
+* Exposed on port 8080
+
+## PostgreSQL + PostGIS
+
+* Database container
+* Persistent storage using Docker Volumes
+
+## PgAdmin
+
+* Database administration UI
+* Accessible through browser
+
+## Additional Features
+
+### Health Checks
+
+Configured PostgreSQL health checks so the application waits until the database is ready.
+
+### Custom Network
+
+Created a dedicated Docker network:
+
+```text
+uber-network
+```
+
+### Environment Variables
+
+Used environment variables for database configuration.
+
+Docker Compose Location:
+
+```text
+Project/uberApp/docker-compose.yml
+```
 
 ---
 
-## Submission
-1. Add all project files and `day-36-docker-project.md` to `2026/day-36/`
-2. Commit and push to your fork
+# Challenges Faced
+
+## Issue 1: Database Connection Failure
+
+Initial configuration:
+
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/uber_db
+```
+
+Problem:
+
+Inside Docker, localhost refers to the current container itself.
+
+Solution:
+
+```properties
+spring.datasource.url=jdbc:postgresql://postgres:5432/uber_db
+```
+
+Used the Docker Compose service name as the hostname.
 
 ---
 
-## Learn in Public
-Share your Dockerized project on LinkedIn — include the Docker Hub link so others can pull and run it.
+## Issue 2: Authentication Failure
 
-`#90DaysOfDevOps` `#DevOpsKaJosh` `#TrainWithShubham`
+Error:
 
-Happy Learning!
-**TrainWithShubham**
+```text
+The server requested SCRAM-based authentication, but no password was provided.
+```
+
+Cause:
+
+Environment variables were not configured correctly.
+
+Solution:
+
+Configured database credentials using environment variables and referenced them from Spring Boot.
+
+---
+
+## Issue 3: Docker Networking
+
+Learned that:
+
+```text
+localhost = current container
+```
+
+and
+
+```text
+postgres = postgres container
+```
+
+Docker Compose automatically creates DNS entries for service names.
+
+---
+
+# Task 4: Push Image to Docker Hub
+
+Successfully completed:
+
+* Docker Login
+* Image Tagging
+* Image Push to Docker Hub
+
+Screenshots:
+
+![Docker Tag](ScreenShots/dockertag.png)
+
+![Docker Push](ScreenShots/Dockerhubpush.png)
+
+Docker Hub Repository:
+
+```text
+https://hub.docker.com/r/<your-dockerhub-username>/<repository-name>
+```
+
+---
+
+# Task 5: Verify Complete Flow
+
+Performed a fresh deployment test:
+
+1. Removed existing containers
+2. Removed local images
+3. Pulled image from Docker Hub
+4. Started application using Docker Compose
+
+Result:
+
+* Application started successfully
+* PostgreSQL connected successfully
+* Docker networking worked correctly
+* Docker Hub image worked successfully
+
+Application Screenshot:
+
+![Application Working](ScreenShots/Appworking.png)
+
+---
+
+# Project Structure
+
+```text
+uberApp/
+│
+├── Dockerfile
+├── docker-compose.yml
+├── .dockerignore
+├── pom.xml
+├── src/
+└── target/
+```
+
+---
+
+# Key Learnings
+
+* Dockerfile creation
+* Multi-stage builds
+* Docker Compose
+* Docker networking
+* Docker volumes
+* Health checks
+* Environment variables
+* PostgreSQL containerization
+* Spring Boot containerization
+* Docker Hub image management
+
+---
+
+# Final Result
+
+Successfully Dockerized a Spring Boot application with PostgreSQL/PostGIS and PgAdmin using Docker Compose.
+
+Implemented:
+
+* Multi-container architecture
+* Persistent database storage
+* Docker networking
+* Health checks
+* Environment-based configuration
+* Docker Hub image distribution
+
+This project gave me hands-on experience with how applications are deployed and managed in real-world environments using Docker.
