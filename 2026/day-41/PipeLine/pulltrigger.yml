@@ -1,0 +1,25 @@
+name: First CI Pipeline
+
+on:
+  pull_request:
+    branches:
+       - main
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Say Hello
+        run: echo "Hello from GitHub Actions!"
+      - name: Show current date and time
+        run: date
+      - name: Show Branch Name
+        run: echo ${{ github.ref_name }}
+      - name: List Repo Files
+        run: ls -la
+      - name: Show Runner Os
+        run: uname -a
