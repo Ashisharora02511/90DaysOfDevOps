@@ -1,0 +1,15 @@
+name: Explore Runner
+on:
+ workflow_dispatch
+jobs:
+  runner-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker Version
+        run: docker --version
+      - name: Python Version
+        run: python --version
+      - name: Node Version
+        run: node --version
+      - name: Git Version
+        run: git --version

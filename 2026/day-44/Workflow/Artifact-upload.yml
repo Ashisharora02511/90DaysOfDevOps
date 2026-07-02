@@ -1,0 +1,16 @@
+name: Artifact Demo
+on:
+  workflow_dispatch
+jobs:
+  create-artiface:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create report
+        run: |
+          echo "CI Test Report" > report.txt
+          echo "Pipeline Passed" >> report.txt
+      - name:  Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: report.txt

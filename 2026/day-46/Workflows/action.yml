@@ -1,0 +1,40 @@
+name: Setup and Greet
+
+description: Custom composite action
+
+inputs:
+
+  name:
+    required: true
+
+  language:
+    required: false
+    default: en
+
+outputs:
+
+  greeted:
+    description: Greeting completed
+    value: ${{ steps.greet.outputs.greeted }}
+
+runs:
+
+  using: composite
+
+  steps:
+
+    - name: Greeting
+      id: greet
+      shell: bash
+      run: |
+        echo "Hello ${{ inputs.name }}"
+        echo "greeted=true" >> $GITHUB_OUTPUT
+
+    - name: Print Date
+      shell: bash
+      run: date
+
+    - name: Print Runner OS
+      shell: bash
+      run: |
+        echo "Runner OS: $RUNNER_OS"
