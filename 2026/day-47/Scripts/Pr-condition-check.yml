@@ -1,0 +1,69 @@
+name: PR Validation
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  validate-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # -----------------------------
+      # Branch Name Validation
+      # -----------------------------
+      - name: Validate Branch Name
+        run: |
+          BRANCH="${{ github.head_ref }}"
+
+          echo "Branch Name: $BRANCH"
+
+          if [[ "$BRANCH" =~ ^(feature|fix|docs)/.+$ ]]; then
+            echo "✅ Branch name is valid."
+          else
+            echo "❌ Invalid branch name."
+            echo "Allowed patterns:"
+            echo "feature/*"
+            echo "fix/*"
+            echo "docs/*"
+            exit 1
+          fi
+
+      # -----------------------------
+      # PR Description Validation
+      # -----------------------------
+      - name: Validate PR Description
+        run: |
+          BODY="${{ github.event.pull_request.body }}"
+
+          if [ -z "$BODY" ]; then
+            echo "⚠ PR Description is empty."
+          else
+            echo " PR Description exists."
+          fi
+
+      # -----------------------------
+      # File Size Validation
+      # -----------------------------
+      - name: Check File Sizes
+        run: |
+          LIMIT=1048576
+
+          find . -type f | while read file
+          do
+            SIZE=$(stat -c%s "$file")
+
+            if [ "$SIZE" -gt "$LIMIT" ]; then
+              echo " $file is larger than 1 MB"
+                 exit 1
+            fi
+          done
+
+          echo "✅ All files are below 1 MB."
+              

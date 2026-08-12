@@ -1,0 +1,19 @@
+name: Ignore Documentation Changes
+
+on:
+  push:
+    branches:
+      - main
+
+    paths-ignore:
+      - '*.md'
+      - 'docs/**'
+
+jobs:
+  ignore-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print Message
+        run: |
+          echo "Workflow executed because source code changed."
