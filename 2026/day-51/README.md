@@ -86,6 +86,9 @@ exit
 ```
 
 **Verify:** Can you see the Nginx welcome page when you curl from inside the pod?
+Verify: Can you see the Nginx welcome page when you curl from inside the pod?
+
+Yes i can see Nginx welcome page inside pod
 
 ---
 
